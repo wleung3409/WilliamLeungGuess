@@ -10,21 +10,29 @@ public class AIguesser {
            }
            System.out.println("Your number is "+ AIguess +" and it took me "+AIguess +" tries");
     }
-    public static void AIguessBinary(int guess,int min,int max){
-        int AIguess = 50;
-        for(int x=0;guess!=AIguess;x++){
-            if (AIguess<guess){
+    public static void AIguessBinary(int min,int max){
+        int AIguess = max/2;
+        System.out.println("Is your number "+AIguess+"? Please reply higher,lower or correct");
+        Scanner input = new Scanner(System.in);
+        String userinput = input.nextLine();
+        int x = 0;
+        for (x =0;(!(userinput.equals("correct")));x++) {
+            if (userinput.equals("higher")) {
                 min = AIguess;
-                AIguess = max - (min/2);
+                AIguess = (max + min) / 2;
+                System.out.println("Is the value " + AIguess + "?");
+                userinput = input.nextLine();
             }
-            if (AIguess>guess){
+            if (userinput.equals("lower")) {
                 max = AIguess;
-                AIguess = 
+                AIguess = (max + min) / 2;
+                System.out.println("Is the value " + AIguess + "?");
+                userinput = input.nextLine();
             }
-
         }
-    }
-    public static void RandomGuess(String[] args) {
+         System.out.println("Your number is "+AIguess+" and it took me "+(x+1)+" tries");
+        }
+    public static void RandomGuess() {
         // write your code here
         double x = Math.random();
         int random = (int) (x * 11);
